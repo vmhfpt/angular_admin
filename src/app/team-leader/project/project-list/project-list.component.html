@@ -1,0 +1,62 @@
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Project</li>
+        </ol>
+      </nav>
+</div>
+
+<div class="mb-3">
+  <a href="" routerLink="/team-leader/project/add" routerLinkActive="active" ariaCurrentWhenActive="page">
+    <button type="button" class="btn btn-primary">Add Project</button>
+  </a>
+
+</div>
+<div>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>Doe</td>
+            <td>johnexample.com</td>
+            <td class="d-flex w-100" style="gap : 10px">
+                <a [routerLink]="[3]"><button type="button" class="btn btn-warning">Edit</button></a>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>Doe</td>
+            <td>johnexample.com</td>
+            <td class="d-flex  w-100" style="gap : 10px">
+              <a [routerLink]="[3]"><button type="button" class="btn btn-warning">Edit</button></a>
+              <button type="button" class="btn btn-danger">Delete</button>
+          </td>
+          </tr>
+          <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>Doe</td>
+            <td>johnexample.com</td>
+            <td class="d-flex  w-100" style="gap : 10px">
+              <a [routerLink]="[3]"><button type="button" class="btn btn-warning">Edit</button></a>
+              <button type="button" class="btn btn-danger">Delete</button>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<router-outlet></router-outlet>

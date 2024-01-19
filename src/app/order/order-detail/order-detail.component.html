@@ -1,0 +1,76 @@
+<app-modal [nameDelete]="nameDelete" (onConfirmDelete)="onConfirmDelete()" ></app-modal>
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+
+
+        <div class="card">
+    
+          <h5 class="card-header text-danger">Detail order "Name : {{item.name}} - Email : {{item.email}}"</h5>
+          <div class="table-responsive text-nowrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>PRODUCT</th>
+                  <th>IMAGE</th>
+                  <th>PRICE</th>
+                  <th>QUANTITY</th>
+                  <th>TOTAL</th>
+
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody class="table-border-bottom-0 show-table">
+                <tr *ngFor="let item of dataItem ; let i = index">
+                    <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>#{{i + 1}}</strong></td>
+                    <td>{{item.product_id.name}}</td>
+                    <td><img src="{{item.product_id.image}}" width="120" height="120" /></td>
+                    <td>{{formatVNDCurrency(item.price)}}</td>
+                    <td> {{item.quantity}}</td>
+                    <td>{{formatVNDCurrency(item.price * item.quantity)}}</td>
+                    
+                    <td>
+                        <button (click)="onDelete(item._id, item.product_id.name)" type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+        <div class="my-4">
+           <div class="row">
+              <div class="col-12 text-right">
+                 <span class="show-total-order " ><b>Total</b> : {{getSubTotalCart()}}</span>
+              </div>
+             
+           </div>
+        </div>
+
+
+        <div *ngIf="item.status == 6" class="my-3 ">
+          <div class="demo-inline-spacing">
+           
+             <form class="row" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                <div class="col-3">
+                    <select formControlName="product" class="form-control" >
+                        <option value="{{item._id}}-{{item.price_sale}}" *ngFor="let item of products ; let i = index">{{item.name}} - {{formatVNDCurrency(item.price_sale)}}</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                  <input formControlName="quantity" class="form-control" type="number" placeholder="Enter quantity">
+                  <span *ngIf="addForm.get('quantity').hasError('required') " class="text-danger mt-2">* Quantity is required</span>
+                </div>
+                <div class="col-3">
+                 <button type="submit" class="btn btn-success add-handle">Add product</button>
+                </div>
+             </form>
+            
+          </div>
+        </div>
+        
+       
+        </div>
+        </div>

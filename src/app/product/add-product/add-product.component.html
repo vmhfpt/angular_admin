@@ -1,0 +1,126 @@
+<div class=" vw-100 vh-100 d-flex align-items-center justify-content-center  position-fixed " style="top : 0px; left : 0px; background: rgba(3, 3, 3, 0.532);" >
+    <div class="w-100" >
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add product</h5>
+              <button (click)="cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+
+            <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+                <div class="modal-body overflow-auto " style="height: 70vh;">
+                    <div class="row">
+                        <div class="col-6">
+                           <div class="row mb-3">
+                               <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
+                               <div class="col-sm-10">
+                                 <input formControlName="name"  type="text" class="form-control" id="name" placeholder="Enter name ...">
+                               </div>
+                             </div>
+                             <span *ngIf="addForm.get('name').hasError('required')"  class="text-danger error-description">* Name is required </span>
+
+                             <span *ngIf="addForm.get('name').hasError('minlength')"  class="text-danger error-description">* Name must be at least 6 characters </span>
+               
+                             <div class="row mb-3">
+                               <label class="col-sm-2 col-form-label" for="basic-default-name">Category</label>
+                               <div class="col-sm-10">
+                                  <select formControlName="category_id"  id="category_id" class="form-control">
+                                      <option value="{{category._id}}" *ngFor="let category of categories ; let i = index"> {{category.name}} </option>
+                                  </select>
+                               </div>
+                             </div>
+                        </div>
+                        
+                        <div class="col-6">
+                           <div class="row mb-3">
+                               <label class="col-sm-2 col-form-label" for="basic-default-name">Price</label>
+                               <div class="col-sm-10">
+                                 <input formControlName="price" type="text" class="form-control" id="price" placeholder="Enter price ...">
+                               </div>
+                             </div>
+
+                             <span *ngIf="addForm.get('price').hasError('required')"  class="text-danger error-description">* Price is required </span>
+
+                             <span *ngIf="addForm.get('price').hasError('minlength')"  class="text-danger error-description">* Price is invalid </span>
+
+
+                             <div class="row mb-3">
+                               <label class="col-sm-2 col-form-label" for="basic-default-name">Price sale</label>
+                               <div class="col-sm-10">
+                                   <input formControlName="price_sale" type="text" class="form-control" id="price_sale" placeholder="Enter price sale...">
+                               </div>
+                             </div>
+                             <span *ngIf="addForm.get('price_sale').hasError('required')"  class="text-danger error-description">* Price sale is required </span>
+
+                             <span *ngIf="addForm.get('price_sale').hasError('minlength')"  class="text-danger error-description">* Price sale is invalid </span>
+                        </div>
+                        <div class="col-12">
+                           <div class="row mb-3">
+                               <label class="col-sm-12 col-form-label" for="basic-default-name">Description</label>
+                               <div class="col-sm-12">
+                                <ckeditor formControlName="description" [editor]="Editor"  >
+
+                                </ckeditor>
+                               </div>
+                             </div>
+                             <span *ngIf="addForm.get('description').hasError('required')"  class="text-danger error-description">* Description is required </span>
+
+                             <span *ngIf="addForm.get('description').hasError('minlength')"  class="text-danger error-description">* Description must be at least 15 characters </span>
+                        </div>
+                        <div class="col-12">
+                           <div class="row mb-3">
+                               <label class="col-sm-12 col-form-label" for="basic-default-name">Content</label>
+                               <div class="col-sm-12">
+                                <ckeditor formControlName="content" [editor]="Editor"  >
+
+                                </ckeditor>
+                               </div>
+                             </div>
+                             <span *ngIf="addForm.get('content').hasError('required')"  class="text-danger error-description">* Content is required </span>
+
+                             <span *ngIf="addForm.get('content').hasError('minlength')"  class="text-danger error-description">* Content must be at least 15 characters </span>
+                        </div>
+                     </div>
+
+                     <div class="row mb-3">
+                        <label class="col-sm-1 col-form-label" for="basic-default-name">Image</label>
+                        <div class="col-sm-11">
+                            <div>
+                                <label for="formFileDisabled" class="form-label">Upload image for product</label>
+                                <input (change)="onFileChange($event)" class="form-control" type="file" id="customFile" >
+                            </div>
+                            <div class="col-sm-12">
+                                <span *ngIf="addForm.get('file').hasError('required')" class="text-danger error-content">* Image is required </span>
+                                <span *ngIf="addForm.get('file').hasError('invalidFileType')" class="text-danger error-content">* Invalid file type. Allowed types: jpg, jpeg, png.</span>
+                            </div>
+                        </div>
+                        
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-2">
+                            <img [src]="selectedFileUrl" alt="" class="w-100 img-fluid">
+                       </div>
+                        
+                      </div>
+                   
+    
+                </div>
+    
+    
+                <div class="modal-footer">
+                  <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Add</button>
+                  <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+            
+
+
+
+          </div>
+        </div>
+    </div>
+</div>

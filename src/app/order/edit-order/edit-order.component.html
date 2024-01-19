@@ -1,0 +1,239 @@
+<div class=" vw-100 vh-100 d-flex align-items-center justify-content-center  position-fixed "
+    style="top : 0px; left : 0px; background: rgba(3, 3, 3, 0.532);">
+    <div class="w-100">
+        <app-loading *ngIf="loading "> </app-loading>
+        <div *ngIf="loading == false" class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit order </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <a routerLink="/order" routerLinkActive="active" ariaCurrentWhenActive="page"> 
+                            <span aria-hidden="true">&times;</span>
+                        </a>
+                    </button>
+                </div>
+
+
+
+
+
+                <div class="rounded bg-white  modal-body overflow-auto" style="height: 70vh;">
+                    <div class="row">
+                        <div class="col-md-3 border-right">
+                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img
+                                    class="rounded-circle mt-5" width="150px"
+                                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span
+                                    class="font-weight-bold">{{dataItem.name}}</span><span
+                                    class="text-black-50">{{dataItem.email}}</span><span> </span></div>
+                        </div>
+                        <div class="col-md-4 border-right">
+                            <form class="p-3 " [formGroup]="editForm" (ngSubmit)="onSubmit()">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Order detail</h4>
+                                </div>
+                               
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
+                                        <label class="labels">Name: </label>
+                                        <input type="text" class="form-control" placeholder="Enter name" formControlName="name" />
+                                        <span *ngIf="editForm.get('name').hasError('required')" class="text-danger mt-2">* Name is required</span>
+                                        <span *ngIf="editForm.get('name').hasError('minlength')" class="text-danger mt-2">* Name is at least 6 characters</span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="labels">Email: </label>
+                                        <input type="email" class="form-control" placeholder="Enter email" formControlName="email"/>
+                                        <span *ngIf="editForm.get('email').hasError('required') " class="text-danger mt-2">* Email is required</span>
+                                        <span *ngIf="editForm.get('email').hasError('email') " class="text-danger mt-2">* Email is invalid</span>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="labels">Phone: </label>
+                                        <input type="text" class="form-control" placeholder="Enter phone number" formControlName="phone_number" />
+                                        <span *ngIf="editForm.get('phone_number').hasError('vietnamesePhoneNumber')" class="text-danger mt-2">* Phone number  is invalid</span>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="labels">Address: </label>
+                                        <input type="text" class="form-control" placeholder="Enter address" formControlName="address" />
+                                        <span *ngIf="editForm.get('address').hasError('required')" class="text-danger mt-2">* Address is required</span>
+                                        <span *ngIf="editForm.get('address').hasError('minlength')" class="text-danger mt-2">* Address is at least 6 characters</span>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label class="labels">Note: </label>
+                                        <input type="text" class="form-control" placeholder="Enter note" formControlName="note" />
+                                    </div>
+
+                                   
+                                    <div class="col-md-12">
+                                        <label class="labels">Date order: </label>
+                                        <input type="text" class="form-control" placeholder="{{dataItem.createdAt}}" readonly/>
+                                    </div>
+                                    
+                                </div>
+                              
+                                <div class="mt-5 text-center">
+                                    <button class="btn btn-primary " type="submit">Save Order</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="p-3 ">
+
+                                <div class="row d-flex justify-content-center ">
+
+                                    <div class="col-md-12">
+
+                                        <div class="main-card  card">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Order Timeline</h5>
+
+
+                                                <div class="{{statusOrder <= 6 && statusOrder != 0 ? '' : 'disable-active' }} vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                    <div class="vertical-timeline-item vertical-timeline-element">
+                                                        <div>
+                                                            <span class="vertical-timeline-element-icon bounce-in">
+                                                                <i class="fa fa-comment text-primary" aria-hidden="true"></i>
+                                                            </span>
+                                                            <div class="vertical-timeline-element-content bounce-in">
+                                                                <h4 class="timeline-title text-success">Bộ phận chăm sóc khách hàng </h4>
+                                                                <div>
+                                                                    <span class="vertical-timeline-element-date">9:30 AM</span>
+                                                                    <div class="timeline-footer">
+                                                                        <a  *ngIf="statusOrder <= 5 && statusOrder != 0" class="success success-5 btn btn-success btn-sm">Đã tiếp nhận đơn hàng</a>
+                                                                        <a (click)="changeState(5)" *ngIf="statusOrder == 6" class="success success-5 btn btn-danger btn-sm">Xác nhận tiếp nhận đơn hàng</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="{{statusOrder <= 5 && statusOrder != 0 ? '' : 'disable-active' }} vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                    <div class="vertical-timeline-item vertical-timeline-element">
+                                                        <div>
+                                                            <span class="vertical-timeline-element-icon bounce-in">
+                                                                <i class="fa fa-home text-danger" aria-hidden="true"></i>
+                                                            </span>
+                                                            <div class="vertical-timeline-element-content bounce-in">
+                                                                <h4 class="timeline-title text-success">Bộ phận quản lý kho </h4>
+                                                                <div>
+                                                                    <span class="vertical-timeline-element-date">9:30 AM</span>
+                                                                    <div class="timeline-footer">
+                                                                        <a (click)="changeState(4)" *ngIf="statusOrder == 5" data-active="5" class="success success-5 btn btn-danger btn-sm">Xác nhận rời kho</a>
+                                                                        <a *ngIf="statusOrder <= 4 && statusOrder != 0" class="success success-5 btn btn-success btn-sm">Đã rời kho</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="{{statusOrder <= 4 && statusOrder != 0 ? '' : 'disable-active' }} vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                    <div class="vertical-timeline-item vertical-timeline-element">
+                                                        <div>
+                                                            <span class="vertical-timeline-element-icon bounce-in">
+                                                                <i class="fa fa-ambulance  text-warning" aria-hidden="true"></i>
+                                                            </span>
+                                                            <div class="vertical-timeline-element-content bounce-in">
+                                                                <h4 class="timeline-title text-success">Bộ phận vận chuyển </h4>
+                                                                <div>
+                                                                    <span class="vertical-timeline-element-date">9:30 AM</span>
+                                                                    <div class="timeline-footer">
+                                                                        <a (click)="changeState(3)" *ngIf="statusOrder == 4" class="success success-5 btn btn-danger btn-sm">Xác nhận đang vận chuyển</a>
+                                                                        <a *ngIf="statusOrder <= 3 && statusOrder != 0" class="success success-5 btn btn-success btn-sm">Đang vận chuyển</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="{{statusOrder <= 3 && statusOrder != 0 ? '' : 'disable-active' }} vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                    <div class="vertical-timeline-item vertical-timeline-element">
+                                                        <div>
+                                                            <span class="vertical-timeline-element-icon bounce-in">
+                                                                <i class="fa fa-map-marker text-success" aria-hidden="true"></i>
+                                                            </span>
+                                                            <div class="vertical-timeline-element-content bounce-in">
+                                                                <h4 class="timeline-title text-success">Bộ phận vận chuyển </h4>
+                                                                <div>
+                                                                    <span class="vertical-timeline-element-date">9:30 AM</span>
+                                                                    <div class="timeline-footer">
+                                                                        <a (click)="changeState(2)" *ngIf="statusOrder == 3" class="success success-5 btn btn-danger btn-sm">Xác nhận đã đến nơi</a>
+                                                                        <a *ngIf="statusOrder <= 2 && statusOrder != 0" class="success success-5 btn btn-success btn-sm">Đã đến nơi</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="{{statusOrder <= 2 && statusOrder != 0 ? '' : 'disable-active' }} vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                    <div class="vertical-timeline-item vertical-timeline-element">
+                                                        <div>
+                                                            <span class="vertical-timeline-element-icon bounce-in">
+                                                                <i class="fa fa-check-square-o text-success" aria-hidden="true"></i>
+                                                            </span>
+                                                            <div class="vertical-timeline-element-content bounce-in">
+                                                                <h4 class="timeline-title text-success">Bộ phận vận chuyển </h4>
+                                                                <div>
+                                                                    <span class="vertical-timeline-element-date">9:30 AM</span>
+                                                                    <div class="timeline-footer">
+                                                                        <a (click)="changeState(1)" *ngIf="statusOrder == 2" class="success success-5 btn btn-danger btn-sm">Xác nhận hoàn thành đơn hàng</a>
+                                                                        <a *ngIf="statusOrder <= 1 && statusOrder != 0" class="success success-5 btn btn-success btn-sm">Đã hoàn thành đơn hàng</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                    <div class="vertical-timeline-item vertical-timeline-element">
+                                                        <div>
+                                                            <span class="vertical-timeline-element-icon bounce-in">
+                                                                <i class="fa fa-times text-danger" aria-hidden="true"></i>
+                                                            </span>
+                                                            <div class="vertical-timeline-element-content bounce-in">
+                                                                <h4 class="timeline-title text-success">Bộ phận vận chuyển </h4>
+                                                                <div>
+                                                                    <span class="vertical-timeline-element-date">9:30 AM</span>
+                                                                    <div class="timeline-footer">
+                                                                        <a (click)="changeState(0)" *ngIf="statusOrder != 0" data-active="5" class="success success-5 btn bg-dark btn-sm text-white">Xác nhận hủy đơn</a>
+                                                                        <a *ngIf="statusOrder == 0" data-active="5" class="success success-5 btn bg-dark btn-sm text-white">Đã hủy đơn</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                               
+
+
+
+                                                
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

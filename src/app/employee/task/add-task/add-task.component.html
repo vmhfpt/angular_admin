@@ -1,0 +1,94 @@
+<div class="vw-100 vh-100 d-flex align-items-center justify-content-center  position-absolute " style="top : 0px; left : 0px; background: rgba(3, 3, 3, 0.532);" >
+    <div class="w-100" >
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add task</h5>
+              <button (click)="cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+
+            <div class="modal-body">
+               
+                <form action="" class="was-validated w-100">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="name">Task name:</label>
+                                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name" required>
+                                
+                                <div class="invalid-feedback">* Name is required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="description">Task description:</label>
+                                <input type="text" class="form-control" id="description" placeholder="Enter description" name="description" required>
+                                <div class="invalid-feedback">* Description is required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="description">Project:</label>
+                                <select name="cars" class="custom-select">
+                                    <option value="">Custom Select Menu</option>
+                                    <option value="volvo">Volvo</option>
+                                    <option value="fiat">Fiat</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <div class="invalid-feedback">* Date is required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="description">Priority:</label>
+                                <select name="cars" class="custom-select">
+                                    <option value="">Custom Select Menu</option>
+                                    <option value="volvo">Volvo</option>
+                                    <option value="fiat">Fiat</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <div class="invalid-feedback">* Date is required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="description">Assigned to:</label>
+                                <select name="cars" class="custom-select">
+                                    <option value="">Custom Select Menu</option>
+                                    <option value="volvo">Volvo</option>
+                                    <option value="fiat">Fiat</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <div class="invalid-feedback">* Date is required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="description">Status:</label>
+                                <select name="cars" class="custom-select">
+                                    <option value="">Custom Select Menu</option>
+                                    <option value="volvo">Volvo</option>
+                                    <option value="fiat">Fiat</option>
+                                    <option value="audi">Audi</option>
+                                </select>
+                                <div class="invalid-feedback">* Date is required</div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                  </form>
+
+            </div>
+
+
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Add</button>
+              <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

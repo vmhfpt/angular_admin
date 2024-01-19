@@ -1,0 +1,46 @@
+<!--  -->
+
+<app-modal [nameDelete]="nameDelete" (onConfirmDelete)="onConfirmDelete()" ></app-modal>
+
+
+<div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Area</li>
+        </ol>
+      </nav>
+</div>
+
+<app-loading *ngIf="loading"> </app-loading>
+<div *ngIf="loading == false">
+  <div class="mb-3">
+    <a href="" routerLink="/area/add" routerLinkActive="active" ariaCurrentWhenActive="page">
+      <button type="button" class="btn btn-primary">Add Area</button>
+    </a>
+  
+  </div>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th >STT</th>
+            <th>Name</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let area of areas; let i = index">
+            <td>#{{i + 1}}</td>
+            <td>{{area.name}}</td>
+            <td class="d-flex w-100" style="gap : 10px">
+                <a [routerLink]="[area.id]"><button type="button" class="btn btn-warning">Edit</button></a>
+                <button (click)="onDelete(area.id, area.name)" type="button" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+</div>
+
+<router-outlet ></router-outlet>
+
