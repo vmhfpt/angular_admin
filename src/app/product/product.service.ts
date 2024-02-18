@@ -45,6 +45,21 @@ export class ProductService {
       
     }
 
+    getStatisticProductInOrder(){
+      return this.request('get', `${baseUrl}/orderdetails/get-statistic-by-order-product`);
+    }
+    getStatisticOrderDay(){
+      return this.request('get', `${baseUrl}/orders/get-satistic-by-day`);
+    }
+    getStatisticOrderStatus(){
+      return this.request('get', `${baseUrl}/orders/get-statistic`);
+    }
+    getOrderSuccess(){
+      return this.request('get', `${baseUrl}/orders/get-order-success`);
+    }
+    getRevenue(id : string){
+      return this.request('get', `${baseUrl}/orderdetails/get-revenue?id=${id}`);
+    }
 
     uploadImage(file : File){
       let formData = new FormData();

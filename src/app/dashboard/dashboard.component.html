@@ -3,7 +3,7 @@
     
       <div class="small-box bg-info p-2 rounded">
           <div class="inner text-white">
-              <h3>3</h3>
+              <h3>{{success}}</h3>
 
               <p>Đơn hàng thành công</p>
           </div>
@@ -18,14 +18,14 @@
       <!-- small box -->
       <div class="small-box bg-success p-2 rounded">
           <div class="inner text-white">
-              <h3>3<sup style="font-size: 20px"></sup></h3>
+              <h3>{{process}}<sup style="font-size: 20px"></sup></h3>
 
               <p>Số đơn hàng đang xử lý</p>
           </div>
           <div class="icon">
               <i class="ion ion-stats-bars"></i>
           </div>
-          <a href="<?= $ADMIN_URL ?>/don-hang/" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="#" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
       </div>
   </div>
   <!-- ./col -->
@@ -33,14 +33,14 @@
       <!-- small box -->
       <div class="small-box bg-warning p-2 rounded">
           <div class="inner text-white">
-              <h3>53344$</h3>
+              <h3>{{formatVNDCurrency(revenue)}}</h3>
 
               <p>Doanh thu hệ thống</p>
           </div>
           <div class="icon">
               <i class="ion ion-person-add"></i>
           </div>
-          <a href="<?= $ADMIN_URL ?>/don-hang/" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="#" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
       </div>
   </div>
   <!-- ./col -->
@@ -48,15 +48,28 @@
       <!-- small box -->
       <div class="small-box bg-danger p-2 rounded">
           <div class="inner text-white">
-              <h3>10</h3>
+              <h3>{{cancel}}</h3>
 
               <p>Số đơn hàng đã hủy</p>
           </div>
           <div class="icon">
               <i class="ion ion-pie-graph"></i>
           </div>
-          <a href="<?= $ADMIN_URL ?>/don-hang/" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
+          <a href="#" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
       </div>
   </div>
   <!-- ./col -->
 </div>
+
+<div>
+    <canvasjs-chart [options]="chartOptionsColumn" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
+</div>   
+
+
+<div class="my-3">
+    <canvasjs-chart [options]="chartOptionsPie" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
+</div>  
+
+<div>
+    <canvasjs-chart [options]="chartOptionsArea" [styles]="{width: '100%', height:'360px'}"></canvasjs-chart>    
+</div>  

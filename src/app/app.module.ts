@@ -25,6 +25,9 @@ import { ProductModule } from './product/product.module';
 
 import { OrderModule } from './order/order.module';
 
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +52,7 @@ import { OrderModule } from './order/order.module';
     ProductModule,
     AuthModule,
     AppRoutingModule,
-
+    CanvasJSAngularChartsModule
 
     
   ],
