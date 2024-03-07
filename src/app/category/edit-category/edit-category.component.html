@@ -4,7 +4,7 @@
         <div *ngIf="loading == false && dataItem" class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edit category "{{dataItem.name}}"</h5>
+              <h5 class="modal-title">Sửa danh mục "{{dataItem.name}}"</h5>
               <button (click)="cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -32,10 +32,10 @@
 
                         <div class="form-group">
                           <label for="name">Name:</label>
-                          <input type="text" class="form-control" id="name" placeholder="Enter name" formControlName="name" required>
+                          <input type="text" class="form-control" id="name" placeholder="Nhập tên VD : Bánh" formControlName="name" required>
                           
-                          <span *ngIf="editForm.get('name').hasError('required')" class="text-danger mt-2">* Name is required</span>
-                          <span *ngIf="editForm.get('name').hasError('minlength')" class="text-danger mt-2">* Name is at least 6 characters</span>
+                          <span *ngIf="editForm.get('name').hasError('required')" class="text-danger mt-2">* Tên danh mục bắt buộc nhập</span>
+                          <span *ngIf="editForm.get('name').hasError('minlength')" class="text-danger mt-2">* Tên danh mục phải ít nhất 6 ký tự</span>
                         </div>
 
                       </div>
@@ -44,8 +44,8 @@
     
     
                 <div class="modal-footer">
-                  <button type="submit" [disabled]="editForm.invalid" class="btn btn-warning">Edit</button>
-                  <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" [disabled]="editForm.invalid" class="btn btn-warning">Cập nhật</button>
+                  <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </form>
             

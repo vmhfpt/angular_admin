@@ -4,7 +4,7 @@
         <div *ngIf="loading == false" class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Edit product "{{dataItem.name}}" </h5>
+              <h5 class="modal-title">Sửa sản phẩm "{{dataItem.name}}" </h5>
               <button (click)="cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -14,20 +14,20 @@
             <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
                 <div class="modal-body overflow-auto " style="height: 70vh;">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6">
                            <div class="row mb-3">
-                               <label class="col-sm-2 col-form-label" for="basic-default-name">Name</label>
-                               <div class="col-sm-10">
-                                 <input formControlName="name"  type="text" class="form-control" id="name" placeholder="Enter name ...">
+                               <label class="col-sm-12 col-md-2 col-form-label" for="basic-default-name">Tên sản phẩm</label>
+                               <div class="col-sm-12 col-md-10">
+                                 <input formControlName="name"  type="text" class="form-control" id="name" placeholder="Nhập tên VD : Nước ngọt pepsi">
                                </div>
                              </div>
-                             <span *ngIf="editForm.get('name').hasError('required')"  class="text-danger error-description">* Name is required </span>
+                             <span *ngIf="editForm.get('name').hasError('required')"  class="text-danger error-description">* Tên bắt buộc nhập </span>
 
-                             <span *ngIf="editForm.get('name').hasError('minlength')"  class="text-danger error-description">* Name must be at least 6 characters </span>
+                             <span *ngIf="editForm.get('name').hasError('minlength')"  class="text-danger error-description">* Tên cần phải ít nhất 6 ký tự </span>
                
                              <div class="row mb-3">
-                               <label class="col-sm-2 col-form-label" for="basic-default-name">Category</label>
-                               <div class="col-sm-10">
+                               <label class="col-sm-12 col-md-2 col-form-label" for="basic-default-name">Danh mục</label>
+                               <div class="col-sm-12 col-md-10">
                                   <select formControlName="category_id"  id="category_id" class="form-control">
                                       <option value="{{category._id}}" *ngFor="let category of categories ; let i = index"> {{category.name}} </option>
                                   </select>
@@ -35,66 +35,66 @@
                              </div>
                         </div>
                         
-                        <div class="col-6">
+                        <div class="col-sm-12 col-md-6">
                            <div class="row mb-3">
-                               <label class="col-sm-2 col-form-label" for="basic-default-name">Price</label>
-                               <div class="col-sm-10">
-                                 <input formControlName="price" type="text" class="form-control" id="price" placeholder="Enter price ...">
+                               <label class="col-sm-12 col-md-2 col-form-label" for="basic-default-name">Giá nhập</label>
+                               <div class="col-sm-12 col-md-10">
+                                 <input formControlName="price" type="text" class="form-control" id="price" placeholder="Nhập giá gốc VD : 30000">
                                </div>
                              </div>
 
-                             <span *ngIf="editForm.get('price').hasError('required')"  class="text-danger error-description">* Price is required </span>
+                             <span *ngIf="editForm.get('price').hasError('required')"  class="text-danger error-description">* Giá gốc bắt buộc nhập </span>
 
-                             <span *ngIf="editForm.get('price').hasError('minlength')"  class="text-danger error-description">* Price is invalid </span>
+                             <span *ngIf="editForm.get('price').hasError('min')"  class="text-danger error-description">* Giá gốc không hợp lệ </span>
 
 
                              <div class="row mb-3">
-                               <label class="col-sm-2 col-form-label" for="basic-default-name">Price sale</label>
-                               <div class="col-sm-10">
-                                   <input formControlName="price_sale" type="text" class="form-control" id="price_sale" placeholder="Enter price sale...">
+                               <label class="col-sm-12 col-md-2 col-form-label" for="basic-default-name">Giá bán</label>
+                               <div class="col-sm-12 col-md-10">
+                                   <input formControlName="price_sale" type="text" class="form-control" id="price_sale" placeholder="Nhập giá bán VD : 40000">
                                </div>
                              </div>
-                             <span *ngIf="editForm.get('price_sale').hasError('required')"  class="text-danger error-description">* Price sale is required </span>
+                             <span *ngIf="editForm.get('price_sale').hasError('required')"  class="text-danger error-description">* Giá bán bắt buộc nhập </span>
 
-                             <span *ngIf="editForm.get('price_sale').hasError('minlength')"  class="text-danger error-description">* Price sale is invalid </span>
+                             <span *ngIf="editForm.get('price_sale').hasError('min')"  class="text-danger error-description">* Giá bán không hợp lệ </span>
                         </div>
                         <div class="col-12">
                            <div class="row mb-3">
-                               <label class="col-sm-12 col-form-label" for="basic-default-name">Description</label>
+                               <label class="col-sm-12 col-form-label" for="basic-default-name">Mô tả sản phẩm</label>
                                <div class="col-sm-12">
                                 <ckeditor formControlName="description" [editor]="Editor"  >
 
                                 </ckeditor>
                                </div>
                              </div>
-                             <span *ngIf="editForm.get('description').hasError('required')"  class="text-danger error-description">* Description is required </span>
+                             <span *ngIf="editForm.get('description').hasError('required')"  class="text-danger error-description">* Mô tả sản phẩm bắt buộc nhập </span>
 
-                             <span *ngIf="editForm.get('description').hasError('minlength')"  class="text-danger error-description">* Description must be at least 15 characters </span>
+                             <span *ngIf="editForm.get('description').hasError('minlength')"  class="text-danger error-description">* Mô tả sản phẩm ít nhất 15 ký tự</span>
                         </div>
                         <div class="col-12">
                            <div class="row mb-3">
-                               <label class="col-sm-12 col-form-label" for="basic-default-name">Content</label>
+                               <label class="col-sm-12 col-form-label" for="basic-default-name">Nội dung sản phẩm</label>
                                <div class="col-sm-12">
                                 <ckeditor formControlName="content" [editor]="Editor"  >
 
                                 </ckeditor>
                                </div>
                              </div>
-                             <span *ngIf="editForm.get('content').hasError('required')"  class="text-danger error-description">* Content is required </span>
+                             <span *ngIf="editForm.get('content').hasError('required')"  class="text-danger error-description">* Nội dung bắt buộc nhập </span>
 
-                             <span *ngIf="editForm.get('content').hasError('minlength')"  class="text-danger error-description">* Content must be at least 15 characters </span>
+                             <span *ngIf="editForm.get('content').hasError('minlength')"  class="text-danger error-description">* Nội dung ít nhất 15 ký tự</span>
                         </div>
                      </div>
 
                      <div class="row mb-3">
-                        <label class="col-sm-1 col-form-label" for="basic-default-name">Image</label>
-                        <div class="col-sm-11">
+                        <label class="col-sm-12 col-md-1 col-form-label" for="basic-default-name">Hình ảnh sản phẩm</label>
+                        <div class="col-sm-12 col-md-11">
                             <div>
-                                <label for="formFileDisabled" class="form-label">Upload image for product</label>
+                                <label for="formFileDisabled" class="form-label">Lựa chọn một hình ảnh</label>
                                 <input (change)="onFileChange($event)" class="form-control" type="file" id="customFile" >
                             </div>
                             <div class="col-sm-12">
-                                <span *ngIf="errorFile" class="text-danger error-content">* Invalid file type. Allowed types: jpg, jpeg, png.</span>
+                                <span *ngIf="errorFile" class="text-danger error-content">* Ảnh không hợp lệ, ảnh chỉ cho phép: jpg, jpeg, png.</span>
                             </div>
                           
                         </div>
@@ -102,8 +102,8 @@
                       </div>
                       <div class="row mb-3">
                         <div class="col-sm-1"></div>
-                        <div class="col-sm-2">
-                            <img [src]="selectedFileUrl" alt="" class="w-100 img-fluid">
+                        <div style="width : 300px;">
+                            <img [src]="selectedFileUrl" alt="" class="w-100">
                        </div>
                         
                       </div>
@@ -113,8 +113,8 @@
     
     
                 <div class="modal-footer">
-                  <button type="submit" [disabled]="editForm.invalid" class="btn btn-warning">Save</button>
-                  <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" [disabled]="editForm.invalid" class="btn btn-warning">Lưu lại</button>
+                  <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </form>
             

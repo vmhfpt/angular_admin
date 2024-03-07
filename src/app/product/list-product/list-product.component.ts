@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ProductAttributes } from '../product.interface';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
+import { ToastrService } from 'ngx-toastr';
 declare var $: any;
 @Component({
   selector: 'app-list-product',
@@ -13,7 +14,7 @@ export class ListProductComponent {
   public imageDelete : string = '';
   public idDelete : string = '';
   public nameDelete : string = '';
-  constructor(private router: Router, public productService: ProductService) {
+  constructor(private toastr: ToastrService, private router: Router, public productService: ProductService) {
   }
   ngOnInit(): void {
     this.productService.updateListObservable().subscribe(() => {
@@ -48,6 +49,7 @@ export class ListProductComponent {
     this.productService.deleteImage(this.imageDelete.split('/').pop() as string).subscribe(() => {});
     this.productService.delete(this.idDelete).subscribe(() => {
       this.products = this.products.filter((item) => item._id != this.idDelete);
+      this.toastr.success('Xóa sản phẩm thành công', 'Thành công');
       $('#myModal').modal('toggle');
     });
   }

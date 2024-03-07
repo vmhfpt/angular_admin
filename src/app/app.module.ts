@@ -27,7 +27,8 @@ import { OrderModule } from './order/order.module';
 
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
-
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,8 +53,9 @@ import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
     ProductModule,
     AuthModule,
     AppRoutingModule,
-    CanvasJSAngularChartsModule
-
+    CanvasJSAngularChartsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
     
   ],
   providers: [

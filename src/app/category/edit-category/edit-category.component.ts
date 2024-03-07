@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../category.service';
 import { CategoryAttributes } from '../category.interface';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-edit-category',
   templateUrl: './edit-category.component.html',
@@ -19,6 +20,7 @@ export class EditCategoryComponent {
     name : ''
   };
   constructor(
+    private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -64,6 +66,7 @@ export class EditCategoryComponent {
      };
 
       this.categoryService.update(id, payload as CategoryAttributes).subscribe(() => {
+        this.toastr.success('Cập nhật danh mục thành công', 'Thành công');
         this.categoryService.updateListClicked();
         this.gotoProjects();
 

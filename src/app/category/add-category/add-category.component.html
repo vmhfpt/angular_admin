@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-sm" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Add category</h5>
+              <h5 class="modal-title">Thêm danh mục</h5>
               <button (click)="cancel()" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -15,8 +15,8 @@
                
                     <div>
                         <div class="form-group">
-                          <label for="id">Category ID:</label>
-                          <input readonly type="number" class="form-control" id="id" placeholder="Auto increase" name="id" required>
+                          <label for="id">Danh mục ID:</label>
+                          <input readonly type="number" class="form-control" id="id" placeholder="Tự động tăng" name="id" required>
                         </div>
 
                         <div class="form-group">
@@ -31,11 +31,11 @@
                       </div>
 
                         <div class="form-group">
-                          <label for="name">Name:</label>
-                          <input type="text" class="form-control" id="name" placeholder="Enter name" formControlName="name" required>
+                          <label for="name">Tên danh mục:</label>
+                          <input type="text" class="form-control" id="name" placeholder="Nhập tên VD : Bánh" formControlName="name" required>
                           
-                          <span *ngIf="addForm.get('name').hasError('required')" class="text-danger mt-2">* Name is required</span>
-                          <span *ngIf="addForm.get('name').hasError('minlength')" class="text-danger mt-2">* Name is at least 6 characters</span>
+                          <span *ngIf="addForm.get('name').hasError('required')" class="text-danger mt-2">* Tên danh mục bắt buộc nhập</span>
+                          <span *ngIf="addForm.get('name').hasError('minlength')" class="text-danger mt-2">* Tên danh mục phải ít nhất 6 ký tự</span>
                         </div>
 
 
@@ -45,8 +45,8 @@
     
     
                 <div class="modal-footer">
-                  <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Add</button>
-                  <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" [disabled]="addForm.invalid" class="btn btn-primary">Thêm</button>
+                  <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </form>
             

@@ -1,6 +1,6 @@
 <div class="container">
 
-    <nav class="navbar navbar-expand-lg navbar-success bg-success px-4" style="margin:24px 0;">
+    <!-- <nav class="navbar navbar-expand-lg navbar-success bg-success px-4" style="margin:24px 0;">
       <a class="navbar-brand text-white" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page" >Home</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
         <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,37 @@
   
   
       </div>
+    </nav> -->
+
+
+  
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark" style="margin:24px 0;">
+      <a class="navbar-brand"  routerLink="/product" routerLinkActive="active" ariaCurrentWhenActive="page">Sản phẩm</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav mr-auto ">
+          <li class="nav-item ">
+            <a class="nav-link text-white" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Trang chủ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/category" routerLinkActive="active" ariaCurrentWhenActive="page">Danh mục</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/user" routerLinkActive="active" ariaCurrentWhenActive="page">Tài khoản</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" routerLink="/order" routerLinkActive="active" ariaCurrentWhenActive="page">Đơn hàng </a>
+          </li>
+        </ul>
+        <form class=" my-2 my-lg-0   gap-3">
+          <div class="d-flex align-items-center " style="gap : 10px">
+            <input class="form-control mr-sm-2" type="text" placeholder="Nhập tên sản phẩm ...">
+            <i class="fa fa-search text-white" aria-hidden="true"></i>
+          </div>
+        </form>
+      </div>  
     </nav>
-  
-  
+
   </div>

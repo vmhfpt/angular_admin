@@ -3,8 +3,8 @@
 <div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Categories</li>
+          <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Danh mục</li>
         </ol>
       </nav>
 </div>
@@ -16,35 +16,39 @@
 <div *ngIf="loading == false">
   <div class="mb-3">
     <a href="" routerLink="/category/add" routerLinkActive="active" ariaCurrentWhenActive="page">
-      <button type="button" class="btn btn-primary">Add Category</button>
+      <button type="button" class="btn btn-primary">Thêm danh mục</button>
     </a>
   
   </div>
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let category of categories; let i = index" >
-           
-            
-              <td>{{i + 1}}</td>
-              <td> <span *ngIf="category.lever == 1">--</span> {{category.name}}</td>
-              <td>{{ category.parent_id ? category.parent_id.name : 'Top lever'}}</td>
-              <td class="d-flex w-100" style="gap : 10px">
-                  <a [routerLink]="[category._id]"><button type="button" class="btn btn-warning">Edit</button></a>
-                  <button (click)="onDelete(category._id, category.name)" type="button" class="btn btn-danger">Delete</button>
-              </td>
-           
 
-          </tr>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên</th>
+          <th>Danh mục</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories; let i = index" >
+         
           
-        </tbody>
-      </table>
+            <td>{{i + 1}}</td>
+            <td> <span *ngIf="category.lever == 1">--</span> {{category.name}}</td>
+            <td>{{ category.parent_id ? category.parent_id.name : 'Top lever'}}</td>
+            <td class="d-flex w-100" style="gap : 10px">
+                <a [routerLink]="[category._id]"><button type="button" class="btn btn-warning">Sửa</button></a>
+                <button (click)="onDelete(category._id, category.name)" type="button" class="btn btn-danger">Xóa</button>
+            </td>
+         
+
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+   
 </div>
 <router-outlet></router-outlet>

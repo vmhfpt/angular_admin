@@ -3,6 +3,7 @@ declare var $: any;
 import { CategoryAttributes } from '../category.interface';
 import { Router } from '@angular/router';
 import { CategoryService } from '../category.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-list-category',
   templateUrl: './list-category.component.html',
@@ -12,7 +13,7 @@ export class ListCategoryComponent {
   public loading : boolean = true;
   public idDelete : string = '';
   public nameDelete : string = '';
-  constructor(private router: Router, public categoryService: CategoryService) {
+  constructor(private toastr: ToastrService,private router: Router, public categoryService: CategoryService) {
   }
   ngOnInit(): void {
     this.categoryService.updateListObservable().subscribe(() => {
@@ -56,6 +57,7 @@ export class ListCategoryComponent {
    
     this.categoryService.delete(this.idDelete).subscribe(() => {
       this.categories = this.categories.filter((item) => item._id != this.idDelete);
+      this.toastr.success('Xóa danh mục thành công', 'Thành công');
       $('#myModal').modal('toggle');
     });
   }

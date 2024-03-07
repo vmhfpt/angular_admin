@@ -21,8 +21,7 @@ import { HelperModule } from '../helper/helper.module';
     CommonModule,
     OrderRoutingModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot()
+   
   ]
 })
 export class OrderModule { }

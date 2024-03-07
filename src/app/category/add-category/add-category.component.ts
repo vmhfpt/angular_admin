@@ -3,6 +3,7 @@ import {  FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryAttributes } from '../category.interface';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-category',
@@ -12,6 +13,7 @@ export class AddCategoryComponent {
   public addForm: FormGroup | any;
   public categories : CategoryAttributes[] = [];
   constructor(
+    private toastr: ToastrService,
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
@@ -45,6 +47,7 @@ export class AddCategoryComponent {
      
       this.categoryService.create(payload as CategoryAttributes).subscribe(
         (res: any) => {
+          this.toastr.success('Thêm danh mục thành công', 'Thành công');
           this.categoryService.updateListClicked();
           return this.gotoProjects();
         },

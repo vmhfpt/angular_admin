@@ -20,32 +20,35 @@
     </a>
   
   </div>
+   <div class="table-responsive">
     <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let user of users; let i = index">
-            <td>{{i + 1}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.email}}</td>
-            <td>{{user.role == 1 ? 'Admin' : 'User'}}</td>
-            
-            <td class="d-flex w-100" style="gap : 10px">
-                <a [routerLink]="[user._id]"><button type="button" class="btn btn-warning">Edit</button></a>
-                <button (click)="onDelete(user._id, user.name)" type="button" class="btn btn-danger">Delete</button>
-            </td>
-            
-          </tr>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.role == 1 ? 'Admin' : 'User'}}</td>
           
-        </tbody>
-      </table>
+          <td class="d-flex w-100" style="gap : 10px">
+              <a [routerLink]="[user._id]"><button type="button" class="btn btn-warning">Edit</button></a>
+              <button (click)="onDelete(user._id, user.name)" type="button" class="btn btn-danger">Delete</button>
+          </td>
+          
+        </tr>
+        
+      </tbody>
+    </table>
+   </div>
+   
 </div>
 <router-outlet></router-outlet>
 

@@ -6,6 +6,7 @@ import { ProductService } from '../product.service';
 import { CategoryAttributes } from '../../category/category.interface';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ProductAttributes } from '../product.interface';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-edit-product',
   templateUrl: './edit-product.component.html',
@@ -33,14 +34,15 @@ export class EditProductComponent {
     private fb: FormBuilder,
     private categoryService : CategoryService,
     private productService : ProductService,
+    private toastr: ToastrService
   ) {
     
     this.editForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(6)]],
       description : ['', [Validators.required, Validators.minLength(15)]],
       //file: [null, [this.fileTypeValidator(['jpg', 'jpeg', 'png'])]],
-      price : ['', [Validators.required, Validators.minLength(6)]],
-      price_sale : ['', [Validators.required, Validators.minLength(6)]],
+      price : ['', [Validators.required, Validators.min(100)]],
+      price_sale : ['', [Validators.required, Validators.min(100)]],
       content : ['', [Validators.required, Validators.minLength(15)]],
       category_id : ['', []],
     });
@@ -86,7 +88,7 @@ export class EditProductComponent {
     this.productService.getOne(String(id)).subscribe((data) => {
       this.dataItem  = data ;
       this.loading = false;
-      console.log(data)
+   
       this.selectedFileUrl = data.image;
 
 
@@ -108,6 +110,8 @@ export class EditProductComponent {
   uploadProduct(payload : ProductAttributes, id : string) {
     this.productService.update(id, payload).subscribe(
        (res: any) => {
+      
+        this.toastr.success('Cập nhật sản phẩm thành công', 'Thành công');
          this.productService.updateListClicked();
          return this.gotoProjects();
        },
@@ -136,7 +140,7 @@ export class EditProductComponent {
               ...this.editForm.value,
               image : 'https://nikba.co/hungvu/products/img/' + response.nameFile
             };
-            return this.uploadProduct( payload, idUpdate,);
+            return this.uploadProduct( payload, idUpdate);
           },
           (err: any) => {
             console.log(err);
@@ -148,6 +152,7 @@ export class EditProductComponent {
 
           this.productService.update(idUpdate, payload).subscribe(
             (res: any) => {
+              this.toastr.success('Cập nhật sản phẩm thành công', 'Thành công');
               this.productService.updateListClicked();
               return this.gotoProjects();
             },

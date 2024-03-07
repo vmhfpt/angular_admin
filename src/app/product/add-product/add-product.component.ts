@@ -6,6 +6,7 @@ import { ProductService } from '../product.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CategoryAttributes } from '../../category/category.interface';
 import { CategoryService } from '../../category/category.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html'
@@ -21,11 +22,12 @@ export class AddProductComponent {
     private fb: FormBuilder,
     private productService : ProductService,
     private categoryService : CategoryService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
 
-
+    
     this.categoryService.index().subscribe((data: any) => {
       this.categories = data;
     });
@@ -34,10 +36,10 @@ export class AddProductComponent {
       name: ['', [Validators.required, Validators.minLength(6)]],
       description : ['', [Validators.required, Validators.minLength(15)]],
       file: [null, [Validators.required, this.fileTypeValidator(['jpg', 'jpeg', 'png'])]],
-      price : ['', [Validators.required, Validators.minLength(6)]],
-      price_sale : ['', [Validators.required, Validators.minLength(6)]],
+      price : ['', [Validators.required, Validators.min(100)]],
+      price_sale : ['', [Validators.required, Validators.min(100)]],
       content : ['', [Validators.required, Validators.minLength(15)]],
-      category_id : ['659e83d5129790a1eb8684e9', []],
+      category_id : ['6521fa086206c146921ef6a9', []],
     });
   }
 
@@ -70,6 +72,7 @@ export class AddProductComponent {
   uploadProduct(payload : ProductAttributes) {
      this.productService.create(payload).subscribe(
         (res: any) => {
+          this.toastr.success('Thêm sản phẩm thành công', 'Thành công');
           this.productService.updateListClicked();
           return this.gotoProjects();
         },
