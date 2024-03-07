@@ -14,6 +14,7 @@ export class ListProductComponent {
   public imageDelete : string = '';
   public idDelete : string = '';
   public nameDelete : string = '';
+  public textInput: string = "";
   constructor(private toastr: ToastrService, private router: Router, public productService: ProductService) {
   }
   ngOnInit(): void {
@@ -52,5 +53,16 @@ export class ListProductComponent {
       this.toastr.success('Xóa sản phẩm thành công', 'Thành công');
       $('#myModal').modal('toggle');
     });
+  }
+
+  
+
+  onChanges(event: any) {
+   
+    const queryUrl = `?_key=${this.textInput}&&_page=100`;
+    this.productService.filter(queryUrl).subscribe((data : any) => {
+      this.products = data.dataItem;
+    })
+
   }
 }

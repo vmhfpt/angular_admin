@@ -102,4 +102,7 @@ export class ProductService {
       }));
     }
   
+    filter(query : string){
+      return this.request('get', `${baseUrl}/products/filter${query}`);
+    }
 }

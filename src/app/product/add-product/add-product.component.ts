@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add-product.component.html'
 })
 export class AddProductComponent {
+  public loading : boolean = true;
   public categories : CategoryAttributes[] = [];
   public Editor: any = ClassicEditor;
   public addForm: FormGroup | any;
@@ -23,15 +24,7 @@ export class AddProductComponent {
     private productService : ProductService,
     private categoryService : CategoryService,
     private toastr: ToastrService
-  ) {}
-
-  ngOnInit(): void {
-
-    
-    this.categoryService.index().subscribe((data: any) => {
-      this.categories = data;
-    });
-
+  ) {
     this.addForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(6)]],
       description : ['', [Validators.required, Validators.minLength(15)]],
@@ -41,6 +34,17 @@ export class AddProductComponent {
       content : ['', [Validators.required, Validators.minLength(15)]],
       category_id : ['6521fa086206c146921ef6a9', []],
     });
+  }
+
+  ngAfterViewInit(): void {
+
+    
+    this.categoryService.index().subscribe((data: any) => {
+      this.categories = data;
+      this.loading = false;
+    });
+
+   
   }
 
   fileTypeValidator(allowedTypes: string[]){

@@ -6,7 +6,7 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { ListProductComponent } from './list-product/list-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { HelperModule } from '../helper/helper.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular'; 
 
@@ -18,7 +18,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
   ],
   imports: [
 
-    
+    FormsModule,
     CommonModule,
     ProductRoutingModule,
     HelperModule,

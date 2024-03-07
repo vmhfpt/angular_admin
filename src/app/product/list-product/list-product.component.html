@@ -14,15 +14,47 @@
 
 
 <div *ngIf="loading == false">
-  <div class="mb-3">
-    <a href="" routerLink="/product/add" routerLinkActive="active" ariaCurrentWhenActive="page">
-      <button type="button" class="btn btn-primary">
-        Thêm sản phẩm
-      </button>
-    </a>
+  <div class="mb-3 d-flex align-items-center justify-content-between">
+    <div class="">
+      <a href="" routerLink="/product/add" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <button type="button" class="btn btn-primary">
+          Thêm sản phẩm
+        </button>
+      </a>
+    </div>
+
+    <div class="">
+      <div class=" my-2 my-lg-0   gap-3">
+        <div class="d-flex align-items-center " style="gap : 10px">
+          <input [(ngModel)]="textInput" (ngModelChange)="onChanges($event)" class="form-control mr-sm-2" type="text" placeholder="Nhập tên sản phẩm ...">
+         
+        </div>
+      </div>
+    </div>
   
   </div>
-  <div class="table-responsive">
+  <div class="row" style="background: #f3f3f3;">
+      <div *ngFor="let product of products ; let i = index" class="col-6 col-sm-6 col-md-4 col-lg-3 my-4 ">
+          <div class="d-flex flex-column p-4 rounded" style="gap : 10px; background: white;">
+             <div class="">
+                <img style="width : 100%" src={{product.image}} alt="" class="">
+             </div>
+             <div class="">
+              <span >{{product.name}}</span>
+             </div>
+             <div class="d-flex justify-content-center align-items-center" style="gap : 10px">
+                <span class="">{{formatVNDCurrency(product.price)}}</span>
+                <b class="text-danger">{{formatVNDCurrency(product.price_sale)}}</b>
+             </div>
+             <div class="d-flex w-100" style="gap : 10px">
+                <a [routerLink]="[product._id]"><button type="button" class="btn btn-warning">Sửa</button></a>
+                <button (click)="onDelete(product._id, product.name, product.image)" type="button" class="btn btn-danger">Xóa</button>
+             </div>
+          </div>
+      </div>
+     
+  </div>
+  <!-- <div class="table-responsive">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -55,7 +87,7 @@
         
       </tbody>
     </table>
-  </div>
+  </div> -->
     
 </div>
 <router-outlet></router-outlet>

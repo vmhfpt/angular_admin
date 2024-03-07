@@ -1,6 +1,7 @@
 <div class=" vw-100 vh-100 d-flex align-items-center justify-content-center  position-fixed " style="top : 0px; left : 0px; background: rgba(3, 3, 3, 0.532);" >
     <div class="w-100" >
-        <div class="modal-dialog modal-xl" role="document">
+      <app-loading *ngIf="loading"> </app-loading>
+        <div *ngIf="loading == false" class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Thêm sản phẩm</h5>
