@@ -3,24 +3,32 @@ import { ProductAttributes } from '../product.interface';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { ToastrService } from 'ngx-toastr';
+import { CategoryAttributes } from '../../category/category.interface';
+import { CategoryService } from '../../category/category.service';
 declare var $: any;
 @Component({
   selector: 'app-list-product',
   templateUrl: './list-product.component.html'
 })
 export class ListProductComponent {
+  public categoryId : string = '';
+  public categories : CategoryAttributes[] = [];
   public products : ProductAttributes[] = [];
   public loading : boolean = true;
   public imageDelete : string = '';
   public idDelete : string = '';
   public nameDelete : string = '';
   public textInput: string = "";
-  constructor(private toastr: ToastrService, private router: Router, public productService: ProductService) {
+  constructor(private categoryService : CategoryService,private toastr: ToastrService, private router: Router, public productService: ProductService) {
   }
   ngOnInit(): void {
     this.productService.updateListObservable().subscribe(() => {
       this.reloadData();
     });
+    this.categoryService.index().subscribe((data : any) => {
+      this.categories = this.convertData(data);
+      
+    })
   }
   ngAfterViewInit(): void {
     this.reloadData();
@@ -64,5 +72,37 @@ export class ListProductComponent {
       this.products = data.dataItem;
     })
 
+
   }
+
+  convertData(data : CategoryAttributes[]){
+    
+    let newArr : CategoryAttributes[] = [];
+    data.map((item, key) => {
+      
+      if(item.parent_id == null){
+         newArr.push({...item, lever : 0});
+         data.map((i, k) => {
+             if(i.parent_id != null && i.parent_id._id == item._id){
+               newArr.push({...i, lever : 1});
+             }
+         })
+      }
+    })
+    return newArr;
+  }
+
+
+
+
+  public filter(){
+    
+    if(this.categoryId != ''){
+       const queryUrl = `?category_id=${this.categoryId}&&_page=100`;
+        this.productService.filter(queryUrl).subscribe((data : any) => {
+          this.products = data.dataItem;
+        })
+    }
+  }
+  
 }

@@ -23,13 +23,16 @@
       </a>
     </div>
 
-    <div class="">
-      <div class=" my-2 my-lg-0   gap-3">
-        <div class="d-flex align-items-center " style="gap : 10px">
+    <div class="row">
+        <div class="col-12 my-1" >
           <input [(ngModel)]="textInput" (ngModelChange)="onChanges($event)" class="form-control mr-sm-2" type="text" placeholder="Nhập tên sản phẩm ...">
-         
         </div>
-      </div>
+       <div class="col-12 my-1">
+          <select [(ngModel)]="categoryId" (ngModelChange)="filter()"  class="form-control">
+              <option value="" class="">-- Chọn danh mục --</option>
+              <option value="{{category._id}}" *ngFor="let category of categories; let i = index" class="cursor-pointer text-[#626262;] text-[15px]" ><span><span *ngIf="category.lever == 1"> ---</span> {{category.name}}</span></option>
+          </select>
+       </div>
     </div>
   
   </div>
