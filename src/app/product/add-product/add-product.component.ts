@@ -88,7 +88,7 @@ export class AddProductComponent {
           const response = JSON.parse(res);
           const payload = {
             ...this.addForm.value,
-            image : 'http://localhost:5000/files/' + response.nameFile
+            image : 'https://nikba.co/hungvu/products/img/' + response.nameFile
           };
           delete payload.file;
           return this.uploadProduct(payload);

@@ -7,7 +7,7 @@ import { TokenStorageService } from './token.service';
 import { jwtDecode } from "jwt-decode";
 import { catchError } from 'rxjs/operators';
 
-const AUTH_API = 'http://localhost:5000';
+const AUTH_API = 'https://nikba.co/hungvu';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

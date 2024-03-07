@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from '../auth/token.service';
 import {  Observable, Subject, catchError, map, throwError } from 'rxjs';
-const baseUrl = 'http://localhost:5000';
+const baseUrl = 'https://nikba.co/hungvu';
 
 @Injectable({
   providedIn: 'root'

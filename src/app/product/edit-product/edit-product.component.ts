@@ -134,7 +134,7 @@ export class EditProductComponent {
             const response = JSON.parse(res);
             const payload = {
               ...this.editForm.value,
-              image : 'http://localhost:5000/files/' + response.nameFile
+              image : 'https://nikba.co/hungvu/products/img/' + response.nameFile
             };
             return this.uploadProduct( payload, idUpdate,);
           },
