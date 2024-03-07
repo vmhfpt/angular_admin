@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from '../../category/category.service';
 import { ProductService } from '../product.service';
 import { CategoryAttributes } from '../../category/category.interface';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { ProductAttributes } from '../product.interface';
 import { ToastrService } from 'ngx-toastr';
 @Component({

@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductAttributes } from '../product.interface';
 import { ProductService } from '../product.service';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CategoryAttributes } from '../../category/category.interface';
 import { CategoryService } from '../../category/category.service';
 import { ToastrService } from 'ngx-toastr';
