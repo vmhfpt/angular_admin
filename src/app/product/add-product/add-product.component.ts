@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './add-product.component.html'
 })
 export class AddProductComponent {
+  public adding : boolean = false;
   public loading : boolean = true;
   public categories : CategoryAttributes[] = [];
   public Editor: any = ClassicEditor;
@@ -88,7 +89,7 @@ export class AddProductComponent {
   onSubmit(){
 
     if (this.addForm.valid) {
-
+      this.adding = true;
 
       this.productService.uploadImage(this.addForm.value.file).subscribe(
         (res: any) => {

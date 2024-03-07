@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './edit-product.component.html',
 })
 export class EditProductComponent {
+  public saving : boolean = false;
   public errorFile : string  | boolean = false;
   public file : any = false;
   public Editor: any = ClassicEditor;
@@ -116,7 +117,8 @@ export class EditProductComponent {
          return this.gotoProjects();
        },
        (err: any) => {
-         console.log(err);
+        this.toastr.error('Lỗi cập nhật', 'Lỗi');
+        return this.gotoProjects();
        }
     );
  }
@@ -125,7 +127,7 @@ export class EditProductComponent {
      
     if (this.editForm.valid && !this.errorFile) {
      
-       
+       this.saving = true;
        const idUpdate : string = this.route.snapshot.paramMap.get('id')!;
        if(this.file){
         
@@ -143,7 +145,8 @@ export class EditProductComponent {
             return this.uploadProduct( payload, idUpdate);
           },
           (err: any) => {
-            console.log(err);
+            this.toastr.error('Lỗi cập nhật', 'Lỗi');
+            return this.gotoProjects();
           }
         );
         
@@ -157,7 +160,8 @@ export class EditProductComponent {
               return this.gotoProjects();
             },
             (err: any) => {
-              console.log(err);
+              this.toastr.error('Lỗi cập nhật', 'Lỗi');
+              return this.gotoProjects();
             }
         );
        }

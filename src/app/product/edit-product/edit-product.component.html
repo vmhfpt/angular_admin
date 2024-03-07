@@ -113,7 +113,7 @@
     
     
                 <div class="modal-footer">
-                  <button type="submit" [disabled]="editForm.invalid" class="btn btn-warning">Lưu lại</button>
+                  <button type="submit" [disabled]="editForm.invalid || saving" class="btn btn-warning"> <i *ngIf="saving" class="fa fa-spinner fa-pulse"></i> {{saving ? 'Vui lòng chờ': 'Lưu lại'}}</button>
                   <button (click)="cancel()" type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 </div>
             </form>
